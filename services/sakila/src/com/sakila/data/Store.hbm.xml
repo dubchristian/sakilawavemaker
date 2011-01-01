@@ -1,0 +1,36 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.sakila.data.Store" table="store" catalog="sakila" dynamic-insert="false" dynamic-update="false">
+        <id name="storeId" type="byte">
+            <column name="store_id"/>
+            <generator class="identity"/>
+        </id>
+        <property name="lastUpdate" type="timestamp">
+            <column name="last_update" length="19" not-null="true"/>
+        </property>
+        <many-to-one name="staff" class="com.sakila.data.Staff" cascade="none">
+            <column name="manager_staff_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="address" class="com.sakila.data.Address" cascade="none">
+            <column name="address_id" not-null="true"/>
+        </many-to-one>
+        <set name="inventories" inverse="true">
+            <key>
+                <column name="store_id" not-null="true"/>
+            </key>
+            <one-to-many class="com.sakila.data.Inventory"/>
+        </set>
+        <set name="customers" inverse="true">
+            <key>
+                <column name="store_id" not-null="true"/>
+            </key>
+            <one-to-many class="com.sakila.data.Customer"/>
+        </set>
+        <set name="staffs" inverse="true">
+            <key>
+                <column name="store_id" not-null="true"/>
+            </key>
+            <one-to-many class="com.sakila.data.Staff"/>
+        </set>
+    </class>
+</hibernate-mapping>

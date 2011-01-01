@@ -1,0 +1,16 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.sakila.data.SalesByStore" table="sales_by_store" catalog="sakila" dynamic-insert="false" dynamic-update="false">
+        <composite-id name="id" class="com.sakila.data.SalesByStoreId">
+            <key-property name="store" type="string">
+                <column name="store" length="101"/>
+            </key-property>
+            <key-property name="manager" type="string">
+                <column name="manager" length="91"/>
+            </key-property>
+            <key-property name="totalSales" type="big_decimal">
+                <column name="total_sales" precision="27"/>
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

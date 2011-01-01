@@ -1,0 +1,27 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.sakila.data.Language" table="language" catalog="sakila" dynamic-insert="false" dynamic-update="false">
+        <id name="languageId" type="byte">
+            <column name="language_id"/>
+            <generator class="identity"/>
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="20" not-null="true"/>
+        </property>
+        <property name="lastUpdate" type="timestamp">
+            <column name="last_update" length="19" not-null="true"/>
+        </property>
+        <set name="filmsForOriginalLanguageId" inverse="true">
+            <key>
+                <column name="original_language_id"/>
+            </key>
+            <one-to-many class="com.sakila.data.Film"/>
+        </set>
+        <set name="filmsForLanguageId" inverse="true">
+            <key>
+                <column name="language_id" not-null="true"/>
+            </key>
+            <one-to-many class="com.sakila.data.Film"/>
+        </set>
+    </class>
+</hibernate-mapping>

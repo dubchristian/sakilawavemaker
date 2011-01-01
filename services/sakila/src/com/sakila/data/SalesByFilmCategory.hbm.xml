@@ -1,0 +1,13 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.sakila.data.SalesByFilmCategory" table="sales_by_film_category" catalog="sakila" dynamic-insert="false" dynamic-update="false">
+        <composite-id name="id" class="com.sakila.data.SalesByFilmCategoryId">
+            <key-property name="category" type="string">
+                <column name="category" length="25"/>
+            </key-property>
+            <key-property name="totalSales" type="big_decimal">
+                <column name="total_sales" precision="27"/>
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

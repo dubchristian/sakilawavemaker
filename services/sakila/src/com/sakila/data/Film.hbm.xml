@@ -1,0 +1,63 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.sakila.data.Film" table="film" catalog="sakila" dynamic-insert="false" dynamic-update="false">
+        <id name="filmId" type="short">
+            <column name="film_id"/>
+            <generator class="identity"/>
+        </id>
+        <property name="title" type="string">
+            <column name="title" not-null="true"/>
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="65535"/>
+        </property>
+        <property name="releaseYear" type="date">
+            <column name="release_year"/>
+        </property>
+        <property name="rentalDuration" type="byte">
+            <column name="rental_duration" not-null="true"/>
+        </property>
+        <property name="rentalRate" type="big_decimal">
+            <column name="rental_rate" precision="4" not-null="true"/>
+        </property>
+        <property name="length" type="short">
+            <column name="length"/>
+        </property>
+        <property name="replacementCost" type="big_decimal">
+            <column name="replacement_cost" precision="5" not-null="true"/>
+        </property>
+        <property name="rating" type="string">
+            <column name="rating" length="5"/>
+        </property>
+        <property name="specialFeatures" type="string">
+            <column name="special_features" length="54"/>
+        </property>
+        <property name="lastUpdate" type="timestamp">
+            <column name="last_update" length="19" not-null="true"/>
+        </property>
+        <many-to-one name="languageByOriginalLanguageId" class="com.sakila.data.Language" cascade="none">
+            <column name="original_language_id"/>
+        </many-to-one>
+        <many-to-one name="languageByLanguageId" class="com.sakila.data.Language" cascade="none">
+            <column name="language_id" not-null="true"/>
+        </many-to-one>
+        <set name="filmActors" inverse="true">
+            <key>
+                <column name="film_id" not-null="true"/>
+            </key>
+            <one-to-many class="com.sakila.data.FilmActor"/>
+        </set>
+        <set name="filmCategories" inverse="true">
+            <key>
+                <column name="film_id" not-null="true"/>
+            </key>
+            <one-to-many class="com.sakila.data.FilmCategory"/>
+        </set>
+        <set name="inventories" inverse="true">
+            <key>
+                <column name="film_id" not-null="true"/>
+            </key>
+            <one-to-many class="com.sakila.data.Inventory"/>
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,791 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<service xmlns="http://www.activegrid.com/namespaces/ServiceDefinitions/1.0" springFile="sakila.spring.xml" type="DataService" CRUDService="true" class="com.sakila.Sakila" id="sakila">
+    <operation name="getCountryById">
+        <parameter isList="false" typeRef="java.lang.Short" name="id"/>
+        <return isList="false" typeRef="com.sakila.data.Country"/>
+    </operation>
+    <dataobjects>
+        <dataobject supportsQuickData="true" javaType="com.sakila.data.Actor">
+            <element allowNull="false" isList="false" typeRef="java.lang.Short" name="actorId">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="firstName"/>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="lastName"/>
+            <element allowNull="false" isList="false" typeRef="java.util.Date" name="lastUpdate"/>
+            <element allowNull="true" isList="true" typeRef="com.sakila.data.FilmActor" name="filmActors"/>
+        </dataobject>
+        <dataobject supportsQuickData="true" javaType="com.sakila.data.ActorInfo">
+            <element allowNull="false" isList="false" typeRef="com.sakila.data.ActorInfoId" name="id">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+        </dataobject>
+        <dataobject supportsQuickData="true" javaType="com.sakila.data.Address">
+            <element allowNull="false" isList="false" typeRef="java.lang.Short" name="addressId">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="address"/>
+            <element allowNull="true" isList="false" typeRef="java.lang.String" name="address2"/>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="district"/>
+            <element allowNull="true" isList="false" typeRef="java.lang.String" name="postalCode"/>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="phone"/>
+            <element allowNull="false" isList="false" typeRef="java.util.Date" name="lastUpdate"/>
+            <element allowNull="false" isList="false" typeRef="com.sakila.data.City" name="city"/>
+            <element allowNull="true" isList="true" typeRef="com.sakila.data.Store" name="stores"/>
+            <element allowNull="true" isList="true" typeRef="com.sakila.data.Staff" name="staffs"/>
+            <element allowNull="true" isList="true" typeRef="com.sakila.data.Customer" name="customers"/>
+        </dataobject>
+        <dataobject supportsQuickData="true" javaType="com.sakila.data.Category">
+            <element allowNull="false" isList="false" typeRef="java.lang.Byte" name="categoryId">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="name"/>
+            <element allowNull="false" isList="false" typeRef="java.util.Date" name="lastUpdate"/>
+            <element allowNull="true" isList="true" typeRef="com.sakila.data.FilmCategory" name="filmCategories"/>
+        </dataobject>
+        <dataobject supportsQuickData="true" javaType="com.sakila.data.City">
+            <element allowNull="false" isList="false" typeRef="java.lang.Short" name="cityId">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="city"/>
+            <element allowNull="false" isList="false" typeRef="java.util.Date" name="lastUpdate"/>
+            <element allowNull="false" isList="false" typeRef="com.sakila.data.Country" name="country"/>
+            <element allowNull="true" isList="true" typeRef="com.sakila.data.Address" name="addresses"/>
+        </dataobject>
+        <dataobject supportsQuickData="true" javaType="com.sakila.data.Country">
+            <element allowNull="false" isList="false" typeRef="java.lang.Short" name="countryId">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="country"/>
+            <element allowNull="false" isList="false" typeRef="java.util.Date" name="lastUpdate"/>
+            <element allowNull="true" isList="true" typeRef="com.sakila.data.City" name="cities"/>
+        </dataobject>
+        <dataobject supportsQuickData="true" javaType="com.sakila.data.Customer">
+            <element allowNull="false" isList="false" typeRef="java.lang.Short" name="customerId">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="firstName"/>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="lastName"/>
+            <element allowNull="true" isList="false" typeRef="java.lang.String" name="email"/>
+            <element allowNull="false" isList="false" typeRef="java.lang.Boolean" name="active"/>
+            <element allowNull="false" isList="false" typeRef="java.util.Date" name="createDate"/>
+            <element allowNull="false" isList="false" typeRef="java.util.Date" name="lastUpdate"/>
+            <element allowNull="false" isList="false" typeRef="com.sakila.data.Address" name="address"/>
+            <element allowNull="false" isList="false" typeRef="com.sakila.data.Store" name="store"/>
+            <element allowNull="true" isList="true" typeRef="com.sakila.data.Rental" name="rentals"/>
+            <element allowNull="true" isList="true" typeRef="com.sakila.data.Payment" name="payments"/>
+        </dataobject>
+        <dataobject supportsQuickData="true" javaType="com.sakila.data.CustomerList">
+            <element allowNull="false" isList="false" typeRef="com.sakila.data.CustomerListId" name="id">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+        </dataobject>
+        <dataobject supportsQuickData="true" javaType="com.sakila.data.Film">
+            <element allowNull="false" isList="false" typeRef="java.lang.Short" name="filmId">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="title"/>
+            <element allowNull="true" isList="false" typeRef="java.lang.String" name="description"/>
+            <element allowNull="true" isList="false" typeRef="java.util.Date" name="releaseYear"/>
+            <element allowNull="false" isList="false" typeRef="java.lang.Byte" name="rentalDuration"/>
+            <element allowNull="false" isList="false" typeRef="java.math.BigDecimal" name="rentalRate"/>
+            <element allowNull="true" isList="false" typeRef="java.lang.Short" name="length"/>
+            <element allowNull="false" isList="false" typeRef="java.math.BigDecimal" name="replacementCost"/>
+            <element allowNull="true" isList="false" typeRef="java.lang.String" name="rating"/>
+            <element allowNull="true" isList="false" typeRef="java.lang.String" name="specialFeatures"/>
+            <element allowNull="false" isList="false" typeRef="java.util.Date" name="lastUpdate"/>
+            <element allowNull="true" isList="false" typeRef="com.sakila.data.Language" name="languageByOriginalLanguageId"/>
+            <element allowNull="false" isList="false" typeRef="com.sakila.data.Language" name="languageByLanguageId"/>
+            <element allowNull="true" isList="true" typeRef="com.sakila.data.FilmActor" name="filmActors"/>
+            <element allowNull="true" isList="true" typeRef="com.sakila.data.FilmCategory" name="filmCategories"/>
+            <element allowNull="true" isList="true" typeRef="com.sakila.data.Inventory" name="inventories"/>
+        </dataobject>
+        <dataobject supportsQuickData="true" javaType="com.sakila.data.FilmActor">
+            <element allowNull="false" isList="false" typeRef="com.sakila.data.FilmActorId" name="id">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.util.Date" name="lastUpdate"/>
+            <element allowNull="false" isList="false" typeRef="com.sakila.data.Actor" name="actor"/>
+            <element allowNull="false" isList="false" typeRef="com.sakila.data.Film" name="film"/>
+        </dataobject>
+        <dataobject supportsQuickData="true" javaType="com.sakila.data.FilmCategory">
+            <element allowNull="false" isList="false" typeRef="com.sakila.data.FilmCategoryId" name="id">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.util.Date" name="lastUpdate"/>
+            <element allowNull="false" isList="false" typeRef="com.sakila.data.Film" name="film"/>
+            <element allowNull="false" isList="false" typeRef="com.sakila.data.Category" name="category"/>
+        </dataobject>
+        <dataobject supportsQuickData="true" javaType="com.sakila.data.FilmList">
+            <element allowNull="false" isList="false" typeRef="com.sakila.data.FilmListId" name="id">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+        </dataobject>
+        <dataobject supportsQuickData="true" javaType="com.sakila.data.FilmText">
+            <element allowNull="false" isList="false" typeRef="java.lang.Short" name="filmId">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="title"/>
+            <element allowNull="true" isList="false" typeRef="java.lang.String" name="description"/>
+        </dataobject>
+        <dataobject supportsQuickData="true" javaType="com.sakila.data.Inventory">
+            <element allowNull="false" isList="false" typeRef="java.lang.Integer" name="inventoryId">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.util.Date" name="lastUpdate"/>
+            <element allowNull="false" isList="false" typeRef="com.sakila.data.Store" name="store"/>
+            <element allowNull="false" isList="false" typeRef="com.sakila.data.Film" name="film"/>
+            <element allowNull="true" isList="true" typeRef="com.sakila.data.Rental" name="rentals"/>
+        </dataobject>
+        <dataobject supportsQuickData="true" javaType="com.sakila.data.Language">
+            <element allowNull="false" isList="false" typeRef="java.lang.Byte" name="languageId">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="name"/>
+            <element allowNull="false" isList="false" typeRef="java.util.Date" name="lastUpdate"/>
+            <element allowNull="true" isList="true" typeRef="com.sakila.data.Film" name="filmsForOriginalLanguageId"/>
+            <element allowNull="true" isList="true" typeRef="com.sakila.data.Film" name="filmsForLanguageId"/>
+        </dataobject>
+        <dataobject supportsQuickData="true" javaType="com.sakila.data.NicerButSlowerFilmList">
+            <element allowNull="false" isList="false" typeRef="com.sakila.data.NicerButSlowerFilmListId" name="id">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+        </dataobject>
+        <dataobject supportsQuickData="true" javaType="com.sakila.data.Payment">
+            <element allowNull="false" isList="false" typeRef="java.lang.Short" name="paymentId">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.math.BigDecimal" name="amount"/>
+            <element allowNull="false" isList="false" typeRef="java.util.Date" name="paymentDate"/>
+            <element allowNull="false" isList="false" typeRef="java.util.Date" name="lastUpdate"/>
+            <element allowNull="false" isList="false" typeRef="com.sakila.data.Staff" name="staff"/>
+            <element allowNull="false" isList="false" typeRef="com.sakila.data.Customer" name="customer"/>
+            <element allowNull="true" isList="false" typeRef="com.sakila.data.Rental" name="rental"/>
+        </dataobject>
+        <dataobject supportsQuickData="true" javaType="com.sakila.data.Rental">
+            <element allowNull="false" isList="false" typeRef="java.lang.Integer" name="rentalId">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.util.Date" name="rentalDate"/>
+            <element allowNull="true" isList="false" typeRef="java.util.Date" name="returnDate"/>
+            <element allowNull="false" isList="false" typeRef="java.util.Date" name="lastUpdate"/>
+            <element allowNull="false" isList="false" typeRef="com.sakila.data.Staff" name="staff"/>
+            <element allowNull="false" isList="false" typeRef="com.sakila.data.Customer" name="customer"/>
+            <element allowNull="false" isList="false" typeRef="com.sakila.data.Inventory" name="inventory"/>
+            <element allowNull="true" isList="true" typeRef="com.sakila.data.Payment" name="payments"/>
+        </dataobject>
+        <dataobject supportsQuickData="true" javaType="com.sakila.data.SalesByFilmCategory">
+            <element allowNull="false" isList="false" typeRef="com.sakila.data.SalesByFilmCategoryId" name="id">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+        </dataobject>
+        <dataobject supportsQuickData="true" javaType="com.sakila.data.SalesByStore">
+            <element allowNull="false" isList="false" typeRef="com.sakila.data.SalesByStoreId" name="id">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+        </dataobject>
+        <dataobject supportsQuickData="true" javaType="com.sakila.data.Staff">
+            <element allowNull="false" isList="false" typeRef="java.lang.Byte" name="staffId">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="firstName"/>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="lastName"/>
+            <element allowNull="true" isList="true" typeRef="byte" name="picture"/>
+            <element allowNull="true" isList="false" typeRef="java.lang.String" name="email"/>
+            <element allowNull="false" isList="false" typeRef="java.lang.Boolean" name="active"/>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="username"/>
+            <element allowNull="true" isList="false" typeRef="java.lang.String" name="password"/>
+            <element allowNull="false" isList="false" typeRef="java.util.Date" name="lastUpdate"/>
+            <element allowNull="false" isList="false" typeRef="com.sakila.data.Address" name="address"/>
+            <element allowNull="false" isList="false" typeRef="com.sakila.data.Store" name="store"/>
+            <element allowNull="true" isList="true" typeRef="com.sakila.data.Rental" name="rentals"/>
+            <element allowNull="true" isList="true" typeRef="com.sakila.data.Payment" name="payments"/>
+            <element allowNull="true" isList="true" typeRef="com.sakila.data.Store" name="stores"/>
+        </dataobject>
+        <dataobject supportsQuickData="true" javaType="com.sakila.data.StaffList">
+            <element allowNull="false" isList="false" typeRef="com.sakila.data.StaffListId" name="id">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+        </dataobject>
+        <dataobject supportsQuickData="true" javaType="com.sakila.data.Store">
+            <element allowNull="false" isList="false" typeRef="java.lang.Byte" name="storeId">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+                <exclude>insert</exclude>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.util.Date" name="lastUpdate"/>
+            <element allowNull="false" isList="false" typeRef="com.sakila.data.Staff" name="staff"/>
+            <element allowNull="false" isList="false" typeRef="com.sakila.data.Address" name="address"/>
+            <element allowNull="true" isList="true" typeRef="com.sakila.data.Inventory" name="inventories"/>
+            <element allowNull="true" isList="true" typeRef="com.sakila.data.Customer" name="customers"/>
+            <element allowNull="true" isList="true" typeRef="com.sakila.data.Staff" name="staffs"/>
+        </dataobject>
+        <dataobject supportsQuickData="false" name="id" javaType="com.sakila.data.StaffListId">
+            <element allowNull="false" isList="false" typeRef="java.lang.Byte" name="id">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="name">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="address">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="zipCode">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="phone">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="city">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="country">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.Byte" name="sid">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+        </dataobject>
+        <dataobject supportsQuickData="false" name="id" javaType="com.sakila.data.ActorInfoId">
+            <element allowNull="false" isList="false" typeRef="java.lang.Short" name="actorId">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="firstName">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="lastName">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="filmInfo">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+        </dataobject>
+        <dataobject supportsQuickData="false" name="id" javaType="com.sakila.data.FilmListId">
+            <element allowNull="false" isList="false" typeRef="java.lang.Short" name="fid">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="title">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="description">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="category">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.math.BigDecimal" name="price">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.Short" name="length">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="rating">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="actors">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+        </dataobject>
+        <dataobject supportsQuickData="false" name="id" javaType="com.sakila.data.SalesByStoreId">
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="store">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="manager">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.math.BigDecimal" name="totalSales">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+        </dataobject>
+        <dataobject supportsQuickData="false" name="id" javaType="com.sakila.data.FilmCategoryId">
+            <element allowNull="false" isList="false" typeRef="java.lang.Short" name="filmId">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.Byte" name="categoryId">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+        </dataobject>
+        <dataobject supportsQuickData="false" name="id" javaType="com.sakila.data.CustomerListId">
+            <element allowNull="false" isList="false" typeRef="java.lang.Short" name="id">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="name">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="address">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="zipCode">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="phone">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="city">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="country">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="notes">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.Byte" name="sid">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+        </dataobject>
+        <dataobject supportsQuickData="false" name="id" javaType="com.sakila.data.SalesByFilmCategoryId">
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="category">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.math.BigDecimal" name="totalSales">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+        </dataobject>
+        <dataobject supportsQuickData="false" name="id" javaType="com.sakila.data.FilmActorId">
+            <element allowNull="false" isList="false" typeRef="java.lang.Short" name="actorId">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.Short" name="filmId">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+        </dataobject>
+        <dataobject supportsQuickData="false" name="id" javaType="com.sakila.data.NicerButSlowerFilmListId">
+            <element allowNull="false" isList="false" typeRef="java.lang.Short" name="fid">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="title">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="description">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="category">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.math.BigDecimal" name="price">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.Short" name="length">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="rating">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+            <element allowNull="false" isList="false" typeRef="java.lang.String" name="actors">
+                <require>delete</require>
+                <require>read</require>
+                <require>update</require>
+                <require>insert</require>
+                <noChange>delete</noChange>
+                <noChange>read</noChange>
+                <noChange>update</noChange>
+            </element>
+        </dataobject>
+    </dataobjects>
+</service>

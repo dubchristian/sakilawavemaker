@@ -1,0 +1,17 @@
+
+*.settings
+/.wmproject.properties
+/dist*/
+/export*/
+/webapproot/data*/
+/webapproot/WEB-INF/lib*/
+/webapproot/WEB-INF/classes*/
+/webapproot/data*/
+/webapproot/WEB-INF/lib*/
+/webapproot/WEB-INF/classes*/
+*/*.wmproject.properties
+
+# Cada uno de los proyectos 
+/sakila.xml
+services/cosecha/src/com/Sakila.java
+services/cosecha/src/com/SakilaConstants.java

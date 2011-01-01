@@ -1,0 +1,22 @@
+.PrestadorRecibo .PrestadorRecibo-labelCargando {
+  background-color: #fdb968;
+  background-image:url(resources/images/corriendochico.gif);
+background-repeat:no-repeat;
+background-position: center top; 
+
+}
+
+.PrestadorRecibo .PrestadorRecibo-button3 {
+  a:hover {
+      background-image:url(resources/images/corriendochico.gif);
+}
+}
+
+.PrestadorRecibo .PrestadorRecibo-templateMain {
+	
+}
+
+.PrestadorRecibo .PrestadorRecibo-panelHeader {
+	
+}
+

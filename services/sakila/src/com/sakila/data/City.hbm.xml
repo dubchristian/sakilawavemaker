@@ -1,0 +1,24 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.sakila.data.City" table="city" catalog="sakila" dynamic-insert="false" dynamic-update="false">
+        <id name="cityId" type="short">
+            <column name="city_id"/>
+            <generator class="identity"/>
+        </id>
+        <property name="city" type="string">
+            <column name="city" length="50" not-null="true"/>
+        </property>
+        <property name="lastUpdate" type="timestamp">
+            <column name="last_update" length="19" not-null="true"/>
+        </property>
+        <many-to-one name="country" class="com.sakila.data.Country" cascade="none">
+            <column name="country_id" not-null="true"/>
+        </many-to-one>
+        <set name="addresses" inverse="true">
+            <key>
+                <column name="city_id" not-null="true"/>
+            </key>
+            <one-to-many class="com.sakila.data.Address"/>
+        </set>
+    </class>
+</hibernate-mapping>

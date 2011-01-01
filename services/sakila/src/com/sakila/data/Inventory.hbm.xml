@@ -1,0 +1,24 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.sakila.data.Inventory" table="inventory" catalog="sakila" dynamic-insert="false" dynamic-update="false">
+        <id name="inventoryId" type="integer">
+            <column name="inventory_id"/>
+            <generator class="identity"/>
+        </id>
+        <property name="lastUpdate" type="timestamp">
+            <column name="last_update" length="19" not-null="true"/>
+        </property>
+        <many-to-one name="store" class="com.sakila.data.Store" cascade="none">
+            <column name="store_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="film" class="com.sakila.data.Film" cascade="none">
+            <column name="film_id" not-null="true"/>
+        </many-to-one>
+        <set name="rentals" inverse="true">
+            <key>
+                <column name="inventory_id" not-null="true"/>
+            </key>
+            <one-to-many class="com.sakila.data.Rental"/>
+        </set>
+    </class>
+</hibernate-mapping>

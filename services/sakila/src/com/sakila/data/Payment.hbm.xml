@@ -1,0 +1,27 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.sakila.data.Payment" table="payment" catalog="sakila" dynamic-insert="false" dynamic-update="false">
+        <id name="paymentId" type="short">
+            <column name="payment_id"/>
+            <generator class="identity"/>
+        </id>
+        <property name="amount" type="big_decimal">
+            <column name="amount" precision="5" not-null="true"/>
+        </property>
+        <property name="paymentDate" type="timestamp">
+            <column name="payment_date" length="19" not-null="true"/>
+        </property>
+        <property name="lastUpdate" type="timestamp">
+            <column name="last_update" length="19" not-null="true"/>
+        </property>
+        <many-to-one name="staff" class="com.sakila.data.Staff" cascade="none">
+            <column name="staff_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="customer" class="com.sakila.data.Customer" cascade="none">
+            <column name="customer_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="rental" class="com.sakila.data.Rental" cascade="none">
+            <column name="rental_id"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

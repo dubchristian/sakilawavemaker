@@ -1,0 +1,19 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.sakila.data.ActorInfo" table="actor_info" catalog="sakila" dynamic-insert="false" dynamic-update="false">
+        <composite-id name="id" class="com.sakila.data.ActorInfoId">
+            <key-property name="actorId" type="short">
+                <column name="actor_id"/>
+            </key-property>
+            <key-property name="firstName" type="string">
+                <column name="first_name" length="45"/>
+            </key-property>
+            <key-property name="lastName" type="string">
+                <column name="last_name" length="45"/>
+            </key-property>
+            <key-property name="filmInfo" type="string">
+                <column name="film_info" length="341"/>
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

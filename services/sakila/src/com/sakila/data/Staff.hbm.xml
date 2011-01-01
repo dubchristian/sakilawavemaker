@@ -1,0 +1,57 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.sakila.data.Staff" table="staff" catalog="sakila" dynamic-insert="false" dynamic-update="false">
+        <id name="staffId" type="byte">
+            <column name="staff_id"/>
+            <generator class="identity"/>
+        </id>
+        <property name="firstName" type="string">
+            <column name="first_name" length="45" not-null="true"/>
+        </property>
+        <property name="lastName" type="string">
+            <column name="last_name" length="45" not-null="true"/>
+        </property>
+        <property name="picture" type="binary">
+            <column name="picture"/>
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="50"/>
+        </property>
+        <property name="active" type="boolean">
+            <column name="active" not-null="true"/>
+        </property>
+        <property name="username" type="string">
+            <column name="username" length="16" not-null="true"/>
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="40"/>
+        </property>
+        <property name="lastUpdate" type="timestamp">
+            <column name="last_update" length="19" not-null="true"/>
+        </property>
+        <many-to-one name="address" class="com.sakila.data.Address" cascade="none">
+            <column name="address_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="store" class="com.sakila.data.Store" cascade="none">
+            <column name="store_id" not-null="true"/>
+        </many-to-one>
+        <set name="rentals" inverse="true">
+            <key>
+                <column name="staff_id" not-null="true"/>
+            </key>
+            <one-to-many class="com.sakila.data.Rental"/>
+        </set>
+        <set name="payments" inverse="true">
+            <key>
+                <column name="staff_id" not-null="true"/>
+            </key>
+            <one-to-many class="com.sakila.data.Payment"/>
+        </set>
+        <set name="stores" inverse="true">
+            <key>
+                <column name="manager_staff_id" not-null="true"/>
+            </key>
+            <one-to-many class="com.sakila.data.Store"/>
+        </set>
+    </class>
+</hibernate-mapping>

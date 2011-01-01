@@ -1,0 +1,12 @@
+{
+	"methods": [{
+		"name": "getCountryById",
+		"parameters": [{
+			"name": "id",
+			"type": "java.lang.Short"
+		}],
+		"returnType": "com.sakila.data.Country"
+	}],
+	"serviceType": "JSON-RPC",
+	"serviceURL": "sakila.json"
+}
